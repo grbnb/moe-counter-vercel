@@ -8,8 +8,8 @@ let Count
 
 module.exports = async (req, res) => {
     let {
-        name='index',
-        theme = 'moebooru'
+        name = 'index',
+            theme = 'moebooru'
     } = req.query
 
     await connectToDatabase(db_url)
@@ -23,6 +23,11 @@ module.exports = async (req, res) => {
         theme,
         length
     })
+    res.setHeader(
+        "cache-control",
+        "max-age=0, no-cache, no-store, must-revalidate",
+    );
+    res.setHeader("content-type", "image/svg+xml; charset=utf-8");
     res.send(renderSvg)
 }
 

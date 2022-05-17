@@ -1,0 +1,10 @@
+{
+  "name": "moe-counter",
+  "version": "1.0.0",
+  "description": "",
+  "dependencies": {
+    "image-size": "^1.0.1",
+    "mime-types": "^2.1.35",
+    "mongoose": "^5.13.14"
+  }
+}

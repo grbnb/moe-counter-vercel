@@ -1,0 +1,37 @@
+{
+  "functions": {
+    "api/index.js": {
+      "memory": 256,
+      "maxDuration": 10
+    }
+  },
+  "headers": [
+        {
+            "source": "/favicon.png",
+            "headers": [
+                {
+                    "key": "Cache-Control",
+                    "value": "public, max-age=2592000"
+                },
+                {
+                    "key": "Access-Control-Allow-Origin",
+                    "value": "*"
+                },
+                {
+                    "key": "Access-Control-Allow-Headers",
+                    "value": "content-type"
+                },
+                {
+                    "key": "Access-Control-Allow-Methods",
+                    "value": "DELETE,PUT,POST,GET,OPTIONS"
+                }
+            ]
+        }
+    ],
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/api/index.js"
+    }
+  ]
+}

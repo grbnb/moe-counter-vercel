@@ -1,0 +1,42 @@
+code {
+  padding: 10px;
+  display: block;
+  overflow-x: auto;
+}
+
+.tool > * {
+  display: inline-block;
+  vertical-align: top;
+  margin-left: 6px !important;
+}
+
+.tool > code {
+  padding: 6px;
+}
+
+.tool > input {
+  width: 80px;
+  margin: 0;
+  padding: 5px;
+  font-size: 14px;
+  height: 20px;
+}
+
+.tool > select {
+  margin: 0;
+  padding: 5px;
+  font-size: 14px;
+  height: 30px;
+  width: 120px;
+}
+
+.tool > button {
+  margin: 0;
+  padding: 5px 30px;
+  font-size: 14px;
+  height: 30px;
+}
+
+.result {
+  margin-top: 8px;
+}

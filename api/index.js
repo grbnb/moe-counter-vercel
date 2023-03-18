@@ -1,24 +1,15 @@
 'use strict'
 
 const fs = require('fs')
-const config = require('config-yml')
 const express = require('express')
-const compression = require('compression')
 
-const db = require('./db')
-const themify = require('./utils/themify')
+const db = require('../db/mongodb')
+const themify = require('../utils/themify')
 
-const PLACES = 7
+let PLACES = parseInt(process.env.VIEW_LEN)
+PLACES >= 5 && PLACES <= 18 ? NaN : PLACES = 7
 
 const app = express()
-
-app.use(express.static('assets'))
-app.use(compression())
-app.set('view engine', 'pug')
-
-app.get('/', (req, res) => {
-  res.render('index')
-});
 
 // get the image
 app.get('/get/@:name', async (req, res) => {
@@ -66,15 +57,22 @@ app.get('/heart-beat', (req, res) => {
   console.log('heart-beat')
 });
 
-const listener = app.listen(config.app.port || 3000, () => {
+app.get('*', function (req, res){
+  res.send('<p>404</p>');
+});
+
+const port = process.env.PORT || 3001;
+const listener = app.listen(port, () => {
   console.log('Your app is listening on port ' + listener.address().port)
 })
 
 let __cache_counter = {}, shouldPush = false
 
+let sec = parseInt(process.env.DELAY_SEC)
+sec >= 1 && sec <= 180 ? NaN : sec = 60
 setInterval(() => {
   shouldPush = true
-}, 1000 * 60);
+}, 1000 * sec);
 
 async function pushDB() {
   if (!shouldPush) return

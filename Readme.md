@@ -1,8 +1,8 @@
 # Moe-Counter
 
-多种风格可选的萌萌计数器
+多种风格可选的萌萌计数器-vercel专用版本(express模块)
 
-![Moe-Counter](https://count.getloli.com/get/@Moe-counter.github)
+![Moe-Counter](https://moe-counter-grbnb.vercel.app/get/@Moe-Counter)
 
 <details>
 <summary>More theme</summary>
@@ -26,55 +26,29 @@
 
 ### Install
 
-#### Run on Replit
+#### Run on Vercel
 
-- Open the url [https://replit.com/@journeyad/Moe-Counter](https://replit.com/@journeyad/Moe-Counter)
-- Just hit the **Fork** button
-- And hit the **Run** button
+- Click the Button [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/grbnb/moe-counter-vercel/tree/vercel&env=DB_URL,DB_UPSERT,DELAY_SEC,VIEW_LEN&envDescription=🧡💘💖&envLink=https://github.com/grbnb/moe-counter-vercel/tree/vercel#environment-variables)
+- Just hit the **Github** button
+- Fill in the **Repository Name** blank
+- And fill in **environment-variables** value
+- Hit the **Deploy** button
 
-#### Deploying on your own server
+### Environment Variables
 
-```shell
-$ git clone https://github.com/journey-ad/Moe-Counter.git
-$ cd Moe-Counter
-$ yarn install
+| Key                | Description                                                                           |
+| ------------------ | ------------------------------------------------------------------------------------- |
+| DB_URL             | `mongodb+srv://account:passwd@***.***.***.mongodb.net/db_count` **MongoDB login**: [mongodb](https://cloud.mongodb.com)|
+| DB_UPSERT          | [Insert new document]`true`or`false`, default=`false`(Update only existing documents) |
+| DELAY_SEC          | [Delayed writing to database] set scope `1-180`sec ,default=`60`                      |
+| VIEW_LEN           | [Moe-Counter display length] set scope `5-18` , default=`7`                           |
 
-$ yarn start
-```
-
-### Configuration
-
-`config.yml`
-
-```yaml
-app:
-  port: 3000
-
-db:
-  type: sqlite # sqlite or mongodb
-```
-
-If you use mongodb, you need to specify the environment variable `DB_URL`
-
-```shell
-# eg:
-export DB_URL=mongodb+srv://account:passwd@***.***.***.mongodb.net/db_count
-```
-
-replit can use Secrets, [documentation](https://docs.replit.com/programming-ide/storing-sensitive-information-environment-variables)
-
-```
-DB_URL="mongodb+srv://account:passwd@***.***.***.mongodb.net/db_count"
-```
 
 ## Credits
 
-*   [replit](https://replit.com/)
-*   [A-SOUL_Official](https://space.bilibili.com/703007996)
-*   [moebooru](https://github.com/moebooru/moebooru)
-*   rule34.xxx NSFW
-*   gelbooru.com NSFW
-*   [Icons8](https://icons8.com/icons/set/star)
+*   [journey-ad](https://github.com/journey-ad/Moe-Counter)
+*   [gizmo-ds](https://github.com/gizmo-ds/moe-counter-vercel)
+
 
 ## License
 

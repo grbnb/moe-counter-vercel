@@ -1,8 +1,18 @@
 {
+    "functions": {
+    "api/index.js": {
+      "memory": 256,
+      "maxDuration": 10
+    }
+  },
     "headers": [
         {
-            "source": "/(.*)",
+            "source": "/favicon.png",
             "headers": [
+                {
+                    "key": "Cache-Control",
+                    "value": "public, max-age=2592000"
+                },
                 {
                     "key": "Access-Control-Allow-Origin",
                     "value": "*"
@@ -20,8 +30,8 @@
     ],
     "rewrites": [
         {
-            "source": "/",
-            "destination": "/api/index"
+            "source": "/get/@:name",
+            "destination": "/api/index.js"
         }
     ]
 }

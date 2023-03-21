@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Moe Counter!</title>
+  <link rel="shortcut icon" href="favicon.png" type="image/png">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/GizmoOAO/moe-counter-vercel/public/style.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/vue@3.2.19"></script>
+</head>
+
+<body>
+  <h1>moe-counter-vercel</h1>
+  <p>Moe-counter的Serverless版本</p>
+  <h5>Markdown</h5>
+  <code>![:name](https://count.getloli.com/get/@:name)</code>
+  <h3>
+  eg:<img id="vercel" src="https://moe-counter-vercel.vercel.app/get/@:name" alt="Moe Count!"
+    style="height:100px" /> <br />
+  </h3>
+        <i>Data can access by anyone, please<span style="color: #ff4500;">DO NOT</span>enter personal information
+        </i>
+
+  <div id="app">
+    <h5>Tool</h5>
+    <div class="tool">
+      <code>{{origin}}/get/@</code>
+      <input type="text" placeholder=":key" v-model="key">
+      <code>?theme=</code>
+      <select v-model="theme">
+        <option value="moebooru">moebooru</option>
+        <option value="moebooru-h">moebooru-h</option>
+        <option value="rule34">rule34</option>
+        <option value="gelbooru">gelbooru</option>
+        <option value="gelbooru-h">gelbooru-h</option>
+        <option value="asoul">asoul</option>
+      </select>
+      <button @click="getResult">OK</button>
+    </div>
+
+    <div class="result" v-if="result">
+      <img :src="result" alt="Demo Image" />
+    </div>
+
+    <h5>SVG address</h5>
+    <code>{{url}}</code>
+
+    <h5>Img tag</h5>
+    <code>&lt;img src="{{url}}" alt="{{key?key:"demo"}}" /></code>
+
+    <h5>Markdown</h5>
+    <code>![{{key?key:"demo"}}]({{url}})</code>
+
+    <h3>Credits</h3>
+    <ul>
+      <li>
+        <a href="https://github.com/journey-ad/Moe-counter" target="_blank" rel="noopener noreferrer">Moe-counter</a>
+      </li>
+    </ul>
+  </div>
+  <script>
+    Vue.createApp({
+      data() {
+        return {
+          key: "",
+          theme: "moebooru",
+          result: ""
+        }
+      },
+      computed: {
+        origin() {
+          return location.origin
+        },
+        url() {
+          let u = this.origin + "/get/@" + (this.key ? this.key : "demo")
+          if (this.theme !== "moebooru") u += "?theme=" + this.theme
+          return u
+        },
+        api() {
+          return this.origin + "/record/@" + (this.key ? this.key : "demo")
+        }
+      },
+      methods: {
+        getResult() {
+          this.result = this.url
+        }
+      }
+    }).mount('#app')
+  </script>
+  <script>
+  var ver_url = location.origin;
+  document.getElementById("vercel").src = ver_url + "/get/@:name";
+  </script>
+</body>
+
+</html>

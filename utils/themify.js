@@ -9,6 +9,9 @@ const themePath = path.resolve(__dirname, '../assets/theme')
 
 const themeList = {}
 
+let PLACES = parseInt(process.env.VIEW_LEN)
+PLACES >= 5 && PLACES <= 18 ? NaN : PLACES = 7
+
 fs.readdirSync(themePath).forEach(theme => {
   if(!(theme in themeList)) themeList[theme] = {}
   const imgList = fs.readdirSync(path.resolve(themePath, theme))
@@ -32,7 +35,7 @@ function convertToDatauri(path){
   return `data:${mime};base64,${base64}`
 }
 
-function getCountImage({ count, theme='moebooru', length=7 }) {
+function getCountImage({ count, theme='moebooru', length=PLACES }) {
   if(!(theme in themeList)) theme = 'moebooru'
 
   // This is not the greatest way for generating an SVG but it'll do for now
